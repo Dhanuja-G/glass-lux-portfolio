@@ -7,7 +7,7 @@ const links = [
   { href: "#matrix", label: "Skills" },
   { href: "#lab", label: "Projects" },
   { href: "#timeline", label: "Experience" },
-  { href: "#vault", label: "Achievements" },
+  { href: "#vault", label: "Certifications" },
   { href: "#hub", label: "Contact" },
 ];
 
