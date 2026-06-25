@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   Download, Github, Linkedin, Mail, Phone, ArrowRight, ExternalLink,
   Code2, Database, Server, Wrench, Brain, GraduationCap, Briefcase,
@@ -10,6 +11,10 @@ import { Navbar } from "./Navbar";
 import { Background } from "./Background";
 import avatar from "@/assets/avatar.png";
 import resumeAsset from "@/assets/Dhanuja_resume.pdf.asset.json";
+
+const EMAILJS_SERVICE_ID = "service_8y4e37x";
+const EMAILJS_TEMPLATE_ID = "template_68bio3s";
+const EMAILJS_PUBLIC_KEY = "MXJMcuYZgMqH6UxaA";
 
 /* -------------------------------------------------------- */
 /*  BLOCK 1 — IDENTITY CONSOLE                              */
@@ -571,7 +576,39 @@ function AchievementsVault() {
 /* -------------------------------------------------------- */
 
 function ConnectHub() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus("sending");
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.get("name"),
+          from_email: formData.get("email"),
+          message: formData.get("message"),
+          to_name: "Dhanuja G",
+        },
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        },
+      );
+
+      form.reset();
+      setStatus("sent");
+      setTimeout(() => setStatus("idle"), 3500);
+    } catch (error) {
+      console.error("EmailJS send failed", error);
+      setStatus("error");
+    }
+  }
+
   return (
     <Block id="hub" code="07" title="Connect Hub" subtitle="Open a secure channel">
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6">
@@ -587,11 +624,7 @@ function ConnectHub() {
             <span className="font-mono text-[10px] text-emerald-400">● secure</span>
           </div>
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-              setTimeout(() => setSent(false), 3000);
-            }}
+            onSubmit={handleContactSubmit}
             className="p-6 space-y-4 font-mono"
           >
             {[
@@ -604,9 +637,11 @@ function ConnectHub() {
                 </label>
                 <input
                   id={f.id}
+                  name={f.id}
                   type={f.type}
                   required
                   placeholder={f.placeholder}
+                  disabled={status === "sending"}
                   className="mt-1 w-full bg-transparent border-b border-[var(--glass-border)] text-white text-sm py-2 focus:outline-none focus:border-[#C0C0C0] transition-colors"
                 />
               </div>
@@ -617,18 +652,30 @@ function ConnectHub() {
               </label>
               <textarea
                 id="msg"
+                name="message"
                 required
                 rows={4}
                 placeholder="write your message..."
+                disabled={status === "sending"}
                 className="mt-1 w-full bg-transparent border-b border-[var(--glass-border)] text-white text-sm py-2 focus:outline-none focus:border-[#C0C0C0] transition-colors resize-none"
               />
             </div>
+            {status === "error" ? (
+              <p className="text-xs text-red-300">
+                Message failed to send. Please try again or email directly.
+              </p>
+            ) : null}
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass-card border border-[var(--glass-border)] silver-glow-hover text-sm text-white"
+              disabled={status === "sending"}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass-card border border-[var(--glass-border)] silver-glow-hover text-sm text-white disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Send className="h-4 w-4" />
-              {sent ? "Transmitted ✓" : "Transmit message"}
+              {status === "sending"
+                ? "Transmitting..."
+                : status === "sent"
+                  ? "Transmitted"
+                  : "Transmit message"}
             </button>
           </form>
         </div>
