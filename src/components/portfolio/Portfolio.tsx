@@ -203,8 +203,8 @@ const timelineNodes = [
     tag: "Projects",
     title: "Shipped Applications",
     sub: "End-to-end products across web & AI",
-    meta: "3 launched",
-    items: ["ECART Website", "Focus Master", "AI Recipe Generator"],
+    meta: "5 launched",
+    items: ["Focus Master", "AI Recipe Generator", "Election Campaign", "FlashLearn", "Expense Flow"],
   },
 ];
 
@@ -331,29 +331,44 @@ function SkillMatrix() {
 
 const projects = [
   {
-    title: "ECART Website",
-    blurb: "Full-stack e-commerce platform with secure auth, cart and order flows.",
-    tags: ["React", "Node.js", "Express", "MongoDB"],
-    href: "https://github.com/dhanuja",
-  },
-  {
     title: "Focus Master",
     blurb: "Productivity app with focus timers, task tracking and progress analytics.",
     tags: ["React", "Tailwind", "Firebase"],
-    href: "https://github.com/dhanuja",
+    href: "https://github.com/Dhanuja-G",
   },
   {
     title: "AI Recipe Generator",
     blurb: "Generates recipes from ingredients using an AI-powered cooking assistant.",
     tags: ["React", "Node.js", "AI API"],
-    href: "https://github.com/dhanuja",
+    href: "https://github.com/Dhanuja-G",
+  },
+  {
+    title: "Election Campaign Assistant",
+    blurb:
+      "Full-stack app showcasing parties, CM candidates, symbols, slogans and campaign details in an interactive UI.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
+    href: "https://github.com/Dhanuja-G",
+  },
+  {
+    title: "FlashLearn",
+    blurb:
+      "Flashcard-based learning platform to create, study and test with smart cards and progress tracking.",
+    tags: ["HTML", "CSS", "JavaScript", "Bootstrap", "Local Storage"],
+    href: "https://github.com/Dhanuja-G",
+  },
+  {
+    title: "Expense Flow",
+    blurb:
+      "Personal expense tracker to manage income, categorize spending and monitor finances via a clean dashboard.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
+    href: "https://github.com/Dhanuja-G",
   },
 ];
 
 function ProjectLab() {
   const [hover, setHover] = useState<number | null>(null);
   return (
-    <Block id="lab" code="05" title="Project Lab" subtitle="Experiments shipped to production">
+    <Block id="lab" code="05" title="Projects" subtitle="Experiments shipped to production">
       <div className="grid lg:grid-cols-3 gap-6">
         {projects.map((p, i) => (
           <motion.article
