@@ -74,9 +74,11 @@ function IdentityConsole() {
               </div>
 
               <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                Full Stack Developer building scalable web apps with the MERN stack.
-                Currently pursuing AI &amp; ML at SNS College of Technology — blending
-                engineering with problem-solving to ship impactful products.
+                Passionate Full Stack Developer focused on building scalable web applications
+                with modern frontend and backend technologies. Continuously improving my skills
+                in software development, problem-solving, and real-world project building to
+                create efficient and user-centric digital solutions, while also exploring and
+                growing my interest in Artificial Intelligence and Machine Learning.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -415,15 +417,15 @@ function ProjectLab() {
 /* -------------------------------------------------------- */
 
 const vaultItems = [
-  { icon: Briefcase, label: "Internships", value: "03", note: "Industry programs" },
-  { icon: FolderGit2, label: "Projects", value: "03", note: "Shipped & live" },
-  { icon: Award, label: "Azure AI", value: "AI-900", note: "Microsoft Certified" },
-  { icon: Award, label: "Volleyball", value: "District", note: "School-level player" },
+  { icon: Award, label: "Azure AI Fundamentals", value: "AI-900", note: "Microsoft Certified" },
+  { icon: Award, label: "Full Stack Development", value: "MERN", note: "Certified Program" },
+  { icon: Award, label: "Java Programming", value: "Core", note: "Certification" },
+  { icon: Award, label: "Python Essentials", value: "Cert", note: "Certification" },
 ];
 
 function AchievementsVault() {
   return (
-    <Block id="vault" code="06" title="Achievements Vault" subtitle="Milestones secured">
+    <Block id="vault" code="06" title="Certifications" subtitle="Verified credentials">
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {vaultItems.map((it, i) => (
           <motion.div
