@@ -9,6 +9,7 @@ import {
 import { Navbar } from "./Navbar";
 import { Background } from "./Background";
 import avatar from "@/assets/avatar.png";
+import resumeAsset from "@/assets/Dhanuja_resume.pdf.asset.json";
 
 /* -------------------------------------------------------- */
 /*  BLOCK 1 — IDENTITY CONSOLE                              */
@@ -91,8 +92,10 @@ function IdentityConsole() {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
                 <a
-                  href="/resume.pdf"
-                  download
+                  href={resumeAsset.url}
+                  download="Dhanuja_Ganesan_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-xl glass-card border border-[var(--glass-border)] silver-glow-hover text-sm font-medium text-muted-foreground hover:text-white"
                 >
                   <Download className="h-4 w-4" />
