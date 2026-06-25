@@ -178,83 +178,177 @@ function DeveloperDNA() {
 }
 
 /* -------------------------------------------------------- */
-/*  BLOCK 3 — TIMELINE GRID (horizontal connected nodes)    */
+/*  BLOCK 3a — EDUCATION ARCHIVE                            */
 /* -------------------------------------------------------- */
 
-const timelineNodes = [
+const education = [
   {
-    icon: GraduationCap,
-    tag: "Education",
-    title: "SNS College of Technology",
-    sub: "B.Tech — Artificial Intelligence & Machine Learning",
-    meta: "CGPA · 8.71",
-    items: ["AI / ML Foundations", "Data Structures", "Software Engineering"],
+    school: "SNS College of Technology",
+    degree: "B.Tech – Artificial Intelligence and Machine Learning",
+    period: "2023 – 2027",
+    score: "CGPA: 8.71",
+    tags: ["Artificial Intelligence", "Machine Learning", "Data Structures", "Software Engineering"],
   },
   {
-    icon: Briefcase,
-    tag: "Internships",
-    title: "Industry Experience",
-    sub: "Hands-on full stack engineering exposure",
-    meta: "3 programs",
-    items: ["Live Stream Technologies", "AMYPO", "Pumo Technovation"],
+    school: "Sree Dharmasatha Matriculation Higher Secondary School",
+    degree: "Higher Secondary Education",
+    period: "2022 – 2023",
+    score: "Score: 85%",
+    tags: ["Mathematics", "Computer Science", "Problem Solving"],
   },
   {
-    icon: FolderGit2,
-    tag: "Projects",
-    title: "Shipped Applications",
-    sub: "End-to-end products across web & AI",
-    meta: "5 launched",
-    items: ["Focus Master", "AI Recipe Generator", "Election Campaign", "FlashLearn", "Expense Flow"],
+    school: "Sree Dharmasatha Matriculation Higher Secondary School",
+    degree: "Secondary Education",
+    period: "2020 – 2021",
+    score: "Result: All Pass",
+    tags: ["Core Fundamentals", "Academic Base"],
   },
 ];
 
-function TimelineGrid() {
+function EducationArchive() {
   return (
-    <Block id="timeline" code="03" title="Timeline Grid" subtitle="Connected nodes of my journey">
-      <div className="relative">
-        {/* connecting line */}
-        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C0C0C0]/30 to-transparent -translate-y-1/2" />
-
-        <div className="grid lg:grid-cols-3 gap-6 relative">
-          {timelineNodes.map((n, i) => (
-            <motion.div
-              key={n.tag}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="relative"
-            >
-              {/* node dot */}
-              <div className="hidden lg:flex absolute -top-3 left-1/2 -translate-x-1/2 h-6 w-6 rounded-full glass-strong border border-[var(--glass-border)] items-center justify-center z-10">
-                <div className="h-2 w-2 rounded-full bg-[#C0C0C0]" />
-              </div>
-
-              <div className="glass-card rounded-2xl p-6 h-full silver-glow-hover border border-[var(--glass-border)]">
-                <div className="flex items-center justify-between mb-4">
+    <Block
+      id="education"
+      code="03"
+      title="Education Archive"
+      subtitle="Academic milestones and foundation"
+    >
+      <div className="space-y-5 max-w-4xl mx-auto">
+        {education.map((e, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.08 }}
+            className="glass-card rounded-2xl p-6 border border-[var(--glass-border)] silver-glow-hover relative overflow-hidden"
+          >
+            <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#C0C0C0]/10 blur-3xl" />
+            <div className="flex items-start justify-between gap-4 mb-3 relative">
+              <div className="flex items-start gap-3">
+                <span className="h-10 w-10 rounded-xl glass-strong grid place-items-center shrink-0">
+                  <GraduationCap className="h-5 w-5 text-[#C0C0C0]" />
+                </span>
+                <div>
                   <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    node.{String(i + 1).padStart(2, "0")} · {n.tag}
+                    edu.{String(i + 1).padStart(2, "0")}
                   </span>
-                  <n.icon className="h-4 w-4 text-[#C0C0C0]" />
+                  <h3 className="font-display text-lg font-bold text-white leading-tight">
+                    {e.school}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{e.degree}</p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-white mb-1">{n.title}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{n.sub}</p>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md glass-strong font-mono text-[10px] text-[#E5E7EB] mb-4">
-                  <Calendar className="h-3 w-3" />
-                  {n.meta}
-                </div>
-                <ul className="space-y-2">
-                  {n.items.map((it) => (
-                    <li key={it} className="flex items-center gap-2 text-sm text-white/80">
-                      <span className="h-1 w-3 bg-[#C0C0C0]/60 rounded-full" />
-                      {it}
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </motion.div>
-          ))}
-        </div>
+              <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md glass-strong font-mono text-[10px] text-[#E5E7EB]">
+                  <Calendar className="h-3 w-3" />
+                  {e.period}
+                </span>
+                <span className="font-mono text-[11px] text-[#C0C0C0]">{e.score}</span>
+              </div>
+            </div>
+            <div className="sm:hidden flex flex-wrap gap-2 mb-3 relative">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md glass-strong font-mono text-[10px] text-[#E5E7EB]">
+                <Calendar className="h-3 w-3" />
+                {e.period}
+              </span>
+              <span className="font-mono text-[11px] text-[#C0C0C0] px-2 py-1">{e.score}</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5 relative">
+              {e.tags.map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-0.5 rounded-md glass-strong text-[10px] font-mono text-white/90 border border-[var(--glass-border)]"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </Block>
+  );
+}
+
+/* -------------------------------------------------------- */
+/*  BLOCK 3b — WORK EXPERIENCE ARCHIVE                      */
+/* -------------------------------------------------------- */
+
+const experience = [
+  {
+    company: "Pumo Technovation",
+    role: "Web Development Intern",
+    date: "January 2026",
+    desc: "Worked on frontend and backend development using HTML, CSS, JavaScript, Bootstrap, and Java Servlets. Improved debugging and application integration skills.",
+    tags: ["HTML", "CSS", "JavaScript", "Bootstrap", "Java Servlets"],
+  },
+  {
+    company: "AMYPO",
+    role: "Full Stack Developer Intern",
+    date: "September 2025",
+    desc: "Worked on full-stack development using MongoDB, Express.js, React.js, and Node.js. Built APIs and integrated frontend-backend modules.",
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
+  },
+  {
+    company: "Live Stream Technologies",
+    role: "Python Intern",
+    date: "August 2024",
+    desc: "Worked on Python-based data analysis and real-world project development, improving problem-solving and analytical skills.",
+    tags: ["Python", "Data Analysis"],
+  },
+];
+
+function ExperienceArchive() {
+  return (
+    <Block
+      id="experience"
+      code="04"
+      title="Work Experience Archive"
+      subtitle="Professional learning and industry exposure"
+    >
+      <div className="grid lg:grid-cols-3 gap-6">
+        {experience.map((x, i) => (
+          <motion.article
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="glass-strong rounded-2xl p-6 border border-[var(--glass-border)] silver-glow-hover relative overflow-hidden transition-all"
+          >
+            <div className="absolute -top-12 -right-12 h-36 w-36 rounded-full bg-[#C0C0C0]/10 blur-3xl" />
+            <div className="flex items-center justify-between mb-4 relative">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                exp.{String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="h-8 w-8 rounded-lg glass-card grid place-items-center">
+                <Briefcase className="h-4 w-4 text-[#C0C0C0]" />
+              </span>
+            </div>
+            <h3 className="font-display text-xl font-bold text-white mb-1 relative">
+              {x.company}
+            </h3>
+            <p className="text-sm text-[#C0C0C0] mb-3 relative">{x.role}</p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md glass-card font-mono text-[10px] text-[#E5E7EB] mb-4 relative">
+              <Calendar className="h-3 w-3" />
+              {x.date}
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4 relative">
+              {x.desc}
+            </p>
+            <div className="flex flex-wrap gap-1.5 relative">
+              {x.tags.map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-0.5 rounded-md glass-card text-[10px] font-mono text-white/90 border border-[var(--glass-border)]"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </motion.article>
+        ))}
       </div>
     </Block>
   );
@@ -627,7 +721,8 @@ export function Portfolio() {
       <main>
         <IdentityConsole />
         <DeveloperDNA />
-        <TimelineGrid />
+        <EducationArchive />
+        <ExperienceArchive />
         <SkillMatrix />
         <ProjectLab />
         <AchievementsVault />
